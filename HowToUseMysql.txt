@@ -1,0 +1,65 @@
+http://blog.naver.com/zidarn/150135702684
+설치는 위의 주소를 참고하시고 연동이 잘 되었는지 확인할 때는 아래의 코드로 확인하세요!
+바꿔야 할 부분은
+pakage 이름
+class 이름
+userID
+userPass
+이렇게 4개 입니다. mysql설치할때 포트번호 바꿨으면 localhost:3306 이부분을 바꿔주세요!
+
+--------------------------------------------------------------------------------------------
+
+package test1;
+import java.sql.*;
+public class hedgehog {
+
+	public static void main(String[] args) {
+		DBInit();
+
+	}
+	
+	public static void DBInit(){
+		Connection conn;
+		Statement stmt;
+		ResultSet rs=null;
+		
+		String jdbcUrl = "jdbc:mysql://localhost:3306/sakila";
+		String userID = "root";
+		String userPass = "1234";
+		try{
+			Class.forName("com.mysql.jdbc.Driver");
+		} 
+		catch (ClassNotFoundException e){
+			e.printStackTrace();
+		}
+		try{
+			conn = DriverManager.getConnection(jdbcUrl, userID, userPass);
+			
+			
+			stmt = conn.createStatement();
+			System.out.println("연결 성공");
+			
+			stmt.execute("use sakila");
+			rs = stmt.executeQuery("SELECT * FROM actor");
+			
+			
+			
+			while(rs.next()){
+				int id = rs.getInt("actor_id");
+				String name1 = rs.getString("first_name");
+				String name2 = rs.getString("last_name");
+				System.out.print(id+" ");
+				System.out.print(name1+" ");
+				System.out.print(name2+" \n");
+				//System.out.print(rs.getNString(4)+"\n");
+			}
+			
+			rs.close();
+			stmt.close();
+			conn.close();
+		} catch (SQLException e){
+			e.printStackTrace();
+		}
+	}
+
+}
