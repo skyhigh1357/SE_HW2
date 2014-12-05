@@ -3,7 +3,7 @@ schema: library
 
 table: user
 
-sid		INT(11)		PK	NN
+sid		VARCHAR(40)		PK	NN
 pw		INT(11)			NN
 name		VARCHAR(40)		NN
 major		VARCHAR(40)		NN
