@@ -1,13 +1,15 @@
 package library;
 import java.io.*;
+import java.sql.*;
 
 
 class MainMenu{	
-	public void mainmenu() throws IOException{
+	public void mainmenu() throws IOException, SQLException{
 		
 		InputStreamReader sr=new InputStreamReader(System.in);
 		BufferedReader br=new BufferedReader(sr);
 		
+		while(true){
 		System.out.println("---------------------------");
 		System.out.println("도서 관리 프로그램");
 		System.out.println("---------------------------");
@@ -30,13 +32,13 @@ class MainMenu{
 			mn2.mainmenu2();
 		}
 		else if(n==0){
-			System.out.println("0이면 프로그램종료");		
+			System.out.println("0이면 프로그램종료");
+			System.out.println("이용해 주셔서 감사합니다.");
+			System.exit(0);
 		}
 		else{
 			System.out.println("다시 입력하세요");
-			MainMenu mn=new MainMenu();
-			mn.mainmenu();
 		}
-	}
+	}}
 }
 	
